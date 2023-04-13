@@ -2,7 +2,7 @@ with source as (
     select * from {{ source('postgres', 'events') }}
 )
 
-, renamed_recast as (
+, final as (
     select
         event_id
         , session_id
@@ -15,4 +15,4 @@ with source as (
     from source
 )
 
-select * from renamed_recast
+select * from final

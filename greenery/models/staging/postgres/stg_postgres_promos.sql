@@ -2,7 +2,7 @@ with source as (
     select * from {{ source('postgres', 'promos') }}
 )
 
-, renamed_recast as (
+, final as (
     select
         promo_id
         , discount
@@ -10,4 +10,4 @@ with source as (
     from source
 )
 
-select * from renamed_recast
+select * from final

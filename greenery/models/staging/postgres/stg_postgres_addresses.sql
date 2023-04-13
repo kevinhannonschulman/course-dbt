@@ -1,14 +1,8 @@
-{{ 
-    config(
-        MATERIALIZED = 'table'
-    )
-}}
-
 with source as (
     select * from {{ source('postgres', 'addresses') }}
 )
 
-, renamed_recast as (
+, final as (
     SELECT
         address_id as address_guid
         , address
@@ -18,4 +12,4 @@ with source as (
     from source
 )
 
-select * from renamed_recast
+select * from final

@@ -2,7 +2,7 @@ with source as (
     select * from {{ source('postgres', 'users') }}
 )
 
-, renamed_recast as (
+, final as (
     select
         user_id
         , first_name
@@ -15,4 +15,4 @@ with source as (
     from source
 )
 
-select * from renamed_recast
+select * from final
