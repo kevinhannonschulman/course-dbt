@@ -4,7 +4,7 @@ with source as (
 
 , final as (
     select
-        promo_id
+        promo_id as promo_desc
         , discount
         , status
     from source

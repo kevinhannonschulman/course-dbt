@@ -4,7 +4,7 @@ with source as (
 
 , final as (
     SELECT
-        address_id as address_guid
+        address_id
         , address
         , state
         , lpad(zipcode, 5, 0) as zip_code
