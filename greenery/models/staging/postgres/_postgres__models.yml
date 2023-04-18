@@ -3,15 +3,77 @@ version: 2
 models:
   - name: stg_postgres_users
     description: basic information about greenery users
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+      - name: address_id
+        tests:
+          - not_null
   - name: stg_postgres_addresses
     description: geographic information about greenery users
+    columns:
+      - name: address_id
+        tests:
+          - unique
+          - not_null
   - name: stg_postgres_events
     description: website event information
+    columns:
+      - name: event_id
+        tests:
+          - unique
+          - not_null
+      - name: session_id
+        tests:
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_postgres_users')
+              field: user_id
   - name: stg_postgres_orders
     description: order status, cost and shipping information
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_postgres_events')
+              field: order_id
+      - name: user_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_postgres_users')
+              field: user_id
+      - name: address_id
+        tests:
+          - not_null
   - name: stg_postgres_products
     description: inventory information
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
   - name: stg_postgres_order_items
     description: product and quantity information for orders
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_postgres_orders')
+              field: order_id
+      - name: product_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_postgres_products')
+              field: product_id
   - name: stg_postgres_promos
     description: discount/promotional information
