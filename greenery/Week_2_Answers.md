@@ -32,6 +32,14 @@ If we had more data, I would be particularly interested in return rate because t
 
 **Part 2. Tests**
 
+What assumptions are you making about each model? (i.e. why are you adding each test?)
+
+The singular test valid_delivery_date.sql assumes that there are no instances of delivered_at_utc being earlier than created_at_utc because that would mean that the order was delivered before it was placed.
+
+Generic tests:
+
+ADD TESTS FROM MODELS.YML
+
 Did you find any “bad” data as you added and ran tests on your models? How did you go about either cleaning the data in the dbt model or adjusting your assumptions/tests?
 
 I received an error for the not_null test on my tracking_id column in my stg_postgres_orders table which was surprising because I assumed that every order would have a unique tracking id. However, upon looking at the data, I found that orders that are still being prepared do not yet have a tracking number which explains why some orders had a null value for tracking_id. I also assumed that order_id and product_id would be unique in stg_postgres_events but different site events (e.g. checkout, package_shipped) for the same order are connected by the same order_id and product_id so the test failed on those events. It also looks like there are 9 entries in stg_postgres_orders with the same tracking_id while I assumed that every order would have a unique tracking_id although perhaps those orders have multiple boxes for one shipment with all sharing the same tracking_id.
