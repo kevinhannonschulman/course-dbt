@@ -60,6 +60,9 @@ models:
         tests:
           - unique
           - not_null
+      - name: inventory
+        tests:
+          - positive_values
   - name: stg_postgres_order_items
     description: product and quantity information for orders
     columns:
@@ -75,5 +78,12 @@ models:
           - relationships:
               to: ref('stg_postgres_products')
               field: product_id
+      - name: quantity
+        tests:
+          - positive_values
   - name: stg_postgres_promos
     description: discount/promotional information
+    columns:
+      - name: discount
+        tests:
+          - positive_values
