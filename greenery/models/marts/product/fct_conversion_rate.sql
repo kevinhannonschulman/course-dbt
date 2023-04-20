@@ -30,5 +30,5 @@ select products.name
     , orders.total_orders
     , (orders.total_orders / page_views.total_views) as conversion_rate
 from page_views
-left outer join orders on page_views.order_id = orders.order_id
-left outer join products on page_views.order_id = products.order_id
+left join orders on page_views.order_id = orders.order_id
+left join products on page_views.order_id = products.order_id

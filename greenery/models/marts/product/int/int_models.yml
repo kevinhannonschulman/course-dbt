@@ -3,9 +3,37 @@ version: 2
 models:
   - name: int_daily_views_per_product
     description: daily views per product
+    columns:
+      - name: name
+        tests:
+          - not_null
   - name: int_session_events_agg
     description: aggregation of session events per user_id and session_id
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+      - name: session_id
+        tests:
+          - unique
+          - not_null
   - name: int_orders_per_product
     description: total orders per product_id
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: total_orders
+        tests:
+          - not_null
   - name: int_page_views_per_product
     description: total page views per product_id
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: total_views
+        tests:
+          - not_null
