@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: fct_page_views
+    description: page view information by customer
+    columns:
+      - name: session_id
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+      - name: session_length_minutes
+        tests:
+          - positive_values
+  - name: fct_conversion_rate
+    description: customer conversion rate by product
+    columns:
+      - name: name
+        tests:
+          - not_null
+      - name: total_views
+        tests:
+          - not_null
+      - name: total_orders
+        tests:
+          - not_null
