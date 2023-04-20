@@ -17,12 +17,13 @@ with events as (
 
     select 
     events.product_id, products.name
-    , count(distinct events.session_id) as page_views
+    , count(distinct events.session_id) as daily_page_views
     , date_trunc(day, events.created_at_utc) as day
     from events
     inner join products on events.product_id = products.product_id
     where event_type = 'page_view'
     group by events.product_id, products.name, day
+    order by day desc
 
 )
 
