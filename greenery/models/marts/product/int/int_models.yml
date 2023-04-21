@@ -7,6 +7,9 @@ models:
       - name: name
         tests:
           - not_null
+      - name: daily_page_views
+        tests:
+          - positive_values
   - name: int_session_events_agg
     description: aggregation of session events per user_id and session_id
     columns:
@@ -17,6 +20,18 @@ models:
         tests:
           - unique
           - not_null
+      - name: add_to_carts
+        tests:
+          - positive_values
+      - name: page_views
+        tests:
+          - positive_values
+      - name: packages_shipped
+        tests:
+          - positive_values
+      - name: checkouts
+        tests:
+          - positive_values
   - name: int_orders_per_product
     description: total orders per product_id
     columns:
@@ -27,6 +42,7 @@ models:
       - name: total_orders
         tests:
           - not_null
+          - positive_values
   - name: int_page_views_per_product
     description: total page views per product_id
     columns:
@@ -37,3 +53,4 @@ models:
       - name: total_views
         tests:
           - not_null
+          - positive_values
