@@ -23,6 +23,11 @@ models:
       - name: total_views
         tests:
           - not_null
+          - positive_values
       - name: total_orders
         tests:
           - not_null
+          - positive_values
+      - name: conversion_rate
+        tests:
+          - positive_values
