@@ -49,6 +49,14 @@ Indicators of a user likely not to purchase again may include the use of a promo
 
 If we had more data, I would be particularly interested in return rate because this would be predictive of whether a customer is happy with their purchase and are likely to make a future order.  Additionally, if Greenery added a subscription model in addition to standalone orders, a user adding a subscription would definitely be more likely to purchase again because they are actually signing up for a recurring order.
 
+*3. Explain the product mart models you added. Why did you organize the models in the way you did?*
+
+I created 4 intermediate models primarily focused on aggregating different metrics such as page views and orders by joining different staging tables. int_session_events_agg is an aggregation of session events (e.g. add_to_cart, page_view) grouped by user_id and session_id. int_daily_views_per_product counts the total daily number of page views per product per day. Finally, int_page_views_per_product counts the total number of page views per product_id while int_orders_per_product counts the total number of orders per product_id.
+
+I created 2 fact models, fct_page_views and fct_conversion_rate. I created fct_page_views by joining int_session_events_agg with stg_postgres_users to build upon the intermediate model by adding user information (e.g. first_name,email) as well as the duration of each session. I created fct_conversion_rate to find out which products are receiving a lot of traffic but are not converting into actual purchases. fct_conversion_rate joins two intermediate tables (int_page_views_per_product, int_orders_per_product) as well as stg_postgres_products to produce the conversion rate by dividing orders and page views.
+
+I organized the models in the way I did because each intermediate model produces business logic that could be reusable in future fact models. For example, the number of daily views per product will likely vary depending on the items being sold and seasonal trends so it makes sense to have a reusable model to produce that information rather than starting from scratch each time. In terms of fact models, both models describe events such as total views and order per product, conversion rate, events (e.g. add_to_cart, checkout) and session duration that can then be brought into BI tools for business users to analyze.
+
 **Part 2. Tests**
 
 *1. What assumptions are you making about each model? (i.e. why are you adding each test?)*
