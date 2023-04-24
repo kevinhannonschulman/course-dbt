@@ -21,7 +21,7 @@ with events as (
     , max(created_at_utc) as last_session_event_utc
 
     from events
-    group by 1, 2    
+    group by user_id, session_id    
 )
 
 select * from final
