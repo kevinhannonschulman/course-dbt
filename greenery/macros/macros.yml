@@ -1,0 +1,11 @@
+version: 2
+
+macros:
+  - name: lbs_to_kgs
+    description: converts pounds to kilograms
+  - name: positive_values
+    description: tests if a column contains any values less than zero
+  - name: event_types
+    description: pulls distinct event_types from stg_postgres_events
+  - name: post_hook_grant
+    description: grants access to specified role to each model in the database

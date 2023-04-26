@@ -115,7 +115,9 @@ I think price is likely a key determinant of whether a customer actually makes a
 
 **Part 2: Create a macro to simplify part of a model(s)**
 
+**Part 3:Add a post hook to your project to apply grants to the role “reporting”.**
 
+Added!
 
 **Part 6: dbt Snapshots**
 
