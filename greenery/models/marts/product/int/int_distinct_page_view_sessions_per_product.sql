@@ -13,7 +13,7 @@ with events as (
 , final as (
 
     select product_id
-    , count(distinct session_id) as total_views
+    , count(distinct session_id) as distinct_page_view_sessions
     from events
     where event_type = 'page_view'
     group by product_id

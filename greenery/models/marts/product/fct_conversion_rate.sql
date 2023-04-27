@@ -8,15 +8,15 @@
 with orders as (
 
     select product_id
-    , total_orders
-    from {{ ref('int_orders_per_product') }}
+    , distinct_order_sessions
+    from {{ ref('int_distinct_order_sessions_per_product') }}
 )
 
 , page_views as (
 
     select product_id
-    , total_views
-    from {{ ref('int_page_views_per_product') }}
+    , distinct_page_view_sessions
+    from {{ ref('int_distinct_page_view_sessions_per_product') }}
 )
 
 , products as (
@@ -26,9 +26,9 @@ with orders as (
 )
 
 select products.name
-    , page_views.total_views
-    , orders.total_orders
-    , (orders.total_orders / page_views.total_views) as conversion_rate
+    , page_views.distinct_page_view_sessions
+    , orders.distinct_order_sessions
+    , (orders.distinct_order_sessions / page_views.distinct_page_view_sessions) as conversion_rate
 from page_views
 left join orders on page_views.product_id = orders.product_id
 left join products on page_views.product_id = products.product_id

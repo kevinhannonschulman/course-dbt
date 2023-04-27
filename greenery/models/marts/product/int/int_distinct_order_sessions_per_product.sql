@@ -18,7 +18,7 @@ with events as (
 , final as (
 
     select order_items.product_id
-    , count(distinct events.session_id) as total_orders
+    , count(distinct events.session_id) as distinct_order_sessions
     from events
     left join order_items on events.order_id = order_items.order_id
     where events.order_id is not null

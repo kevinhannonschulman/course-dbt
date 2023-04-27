@@ -49,26 +49,26 @@ models:
         tests:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: timestamp_ntz
-  - name: int_orders_per_product
-    description: total orders per product_id
+  - name: int_distinct_order_sessions_per_product
+    description: total distinct order sessions per product_id
     columns:
       - name: product_id
         tests:
           - unique
           - not_null
-      - name: total_orders
+      - name: distinct_order_sessions
         tests:
           - not_null
           - dbt_utils.accepted_range:
               min_value: 0
-  - name: int_page_views_per_product
-    description: total page views per product_id
+  - name: int_distinct_page_view_sessions_per_product
+    description: total distinct page views sessions per product_id
     columns:
       - name: product_id
         tests:
           - unique
           - not_null
-      - name: total_views
+      - name: distinct_page_view_sessions
         tests:
           - not_null
           - dbt_utils.accepted_range:
