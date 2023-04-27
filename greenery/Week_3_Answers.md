@@ -115,9 +115,9 @@ I think price is likely a key determinant of whether a customer actually makes a
 
 **Part 2: Create a macro to simplify part of a model(s)**
 
-I created the macro to aggregate event types per session to simplify a repetitive 'case when' statement and documented the macro in macros.yml. 
+I created and documented a macro to aggregate event types per session when each event_type is passed through the macro to simplify the repetitive 'case when' statement that I previously used in int_session_events_agg.
 
-**Part 3:Add a post hook to your project to apply grants to the role “reporting”.**
+**Part 3: Add a post hook to your project to apply grants to the role “reporting”.**
 
 Added!
 
@@ -127,7 +127,7 @@ I installed dbt-utils and dbt-expectations and used multiple macros. Specificall
 
 **Part 5: Show (using dbt docs and the model DAGs) how you have simplified or improved a DAG using macros and/or dbt packages.**
 
-I improved my DAG by utilizing the macros within packages such as dbt_utils and dbt_expectations to verify accepted ranges and data types within my intermediate and fact models. Additionally, I created the macro to aggregate event types per session which simplifies the repetitive 'case when' statement that I previously used in int_session_events_agg.
+I improved my DAG by utilizing the macros within packages such as dbt_utils and dbt_expectations to verify accepted ranges and data types within my intermediate and fact models. Additionally, I created a macro to aggregate event types per session which simplifies the repetitive 'case when' statement that I previously used in int_session_events_agg.
 
 **Part 6: dbt Snapshots**
 
