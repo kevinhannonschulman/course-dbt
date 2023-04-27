@@ -115,9 +115,19 @@ I think price is likely a key determinant of whether a customer actually makes a
 
 **Part 2: Create a macro to simplify part of a model(s)**
 
+I created the macro to aggregate event types per session to simplify a repetitive 'case when' statement and documented the macro in macros.yml. 
+
 **Part 3:Add a post hook to your project to apply grants to the role “reporting”.**
 
 Added!
+
+**Part 4: Install a package (i.e. dbt-utils, dbt-expectations) and apply one or more of the macros to your project**
+
+I installed dbt-utils and dbt-expectations and used multiple macros. Specifically, I used dbt_utils.accepted_range in my intermediate and fact .yml files to validate that certain columns only contained values greater than zero and I used dbt_utils.get_column_values in my event_types macro to get the specific event types with which to aggregate event types per session. I also used dbt_expectations.expect_column_values_to_be_of_type in my intermediate and fact .yml files to confirm the data type of columns that should contain timestamp_ntz data.
+
+**Part 5: Show (using dbt docs and the model DAGs) how you have simplified or improved a DAG using macros and/or dbt packages.**
+
+I improved my DAG by utilizing the macros within packages such as dbt_utils and dbt_expectations to verify accepted ranges and data types within my intermediate and fact models. Additionally, I created the macro to aggregate event types per session which simplifies the repetitive 'case when' statement that I previously used in int_session_events_agg.
 
 **Part 6: dbt Snapshots**
 

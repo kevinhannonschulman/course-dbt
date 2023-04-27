@@ -15,6 +15,14 @@ models:
         tests:
           - dbt_utils.accepted_range:
               min_value: 0
+      - name: first_session_event
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp_ntz
+      - name: last_session_event
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp_ntz
   - name: fct_conversion_rate
     description: customer conversion rate by product
     columns:
