@@ -9,14 +9,12 @@ macros:
     description: tests if a column contains any values less than zero
     docs:
       show: true
-  - name: event_types
+  - name: event_type_sums
     description: retrieves distinct event_types from stg_postgres_events
     docs:
       show: true
     arguments:
-      - name: table_name
-        description: table containing event types
-      - name: column_name
+      - name: event_type
         description: column containing event types
   - name: post_hook_grant
     description: grants access to specified role to each model in the database
