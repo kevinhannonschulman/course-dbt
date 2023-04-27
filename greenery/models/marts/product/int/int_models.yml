@@ -33,7 +33,7 @@ models:
         tests:
           - dbt_utils.accepted_range:
               min_value: 0
-      - name: packages_shipped
+      - name: package_shippeds
         tests:
           - dbt_utils.accepted_range:
               min_value: 0
