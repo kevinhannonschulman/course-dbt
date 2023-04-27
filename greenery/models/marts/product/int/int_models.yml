@@ -9,7 +9,12 @@ models:
           - not_null
       - name: daily_page_views
         tests:
-          - positive_values
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: day
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp_ntz
   - name: int_session_events_agg
     description: aggregation of session events per user_id and session_id
     columns:
@@ -22,16 +27,28 @@ models:
           - not_null
       - name: add_to_carts
         tests:
-          - positive_values
+          - dbt_utils.accepted_range:
+              min_value: 0
       - name: page_views
         tests:
-          - positive_values
+          - dbt_utils.accepted_range:
+              min_value: 0
       - name: packages_shipped
         tests:
-          - positive_values
+          - dbt_utils.accepted_range:
+              min_value: 0
       - name: checkouts
         tests:
-          - positive_values
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: first_session_event_utc
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp_ntz
+      - name: last_session_event_utc
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp_ntz
   - name: int_orders_per_product
     description: total orders per product_id
     columns:
@@ -42,7 +59,8 @@ models:
       - name: total_orders
         tests:
           - not_null
-          - positive_values
+          - dbt_utils.accepted_range:
+              min_value: 0
   - name: int_page_views_per_product
     description: total page views per product_id
     columns:
@@ -53,4 +71,5 @@ models:
       - name: total_views
         tests:
           - not_null
-          - positive_values
+          - dbt_utils.accepted_range:
+              min_value: 0

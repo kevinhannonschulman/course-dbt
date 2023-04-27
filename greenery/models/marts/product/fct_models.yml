@@ -13,7 +13,8 @@ models:
           - not_null
       - name: session_length_minutes
         tests:
-          - positive_values
+          - dbt_utils.accepted_range:
+              min_value: 0
   - name: fct_conversion_rate
     description: customer conversion rate by product
     columns:
@@ -23,11 +24,14 @@ models:
       - name: total_views
         tests:
           - not_null
-          - positive_values
+          - dbt_utils.accepted_range:
+              min_value: 0
       - name: total_orders
         tests:
           - not_null
-          - positive_values
+          - dbt_utils.accepted_range:
+              min_value: 0
       - name: conversion_rate
         tests:
-          - positive_values
+          - dbt_utils.accepted_range:
+              min_value: 0
