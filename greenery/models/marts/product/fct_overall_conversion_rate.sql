@@ -16,16 +16,16 @@ with events_distinct_session_type as (
 
 , agg as (
 
-    select sum(events_distinct_session_type.page_views) as num_views
-    , sum(events_distinct_session_type.checkouts) as num_checkouts
+    select sum(events_distinct_session_type.page_views) as distinct_view_sessions
+    , sum(events_distinct_session_type.checkouts) as distinct_checkout_sessions
     from events_distinct_session_type
 
 )
 
 , final as (
-    select num_views
-    , num_checkouts
-    , (num_checkouts / num_views) as overall_conversion_rate
+    select distinct_view_sessions
+    , distinct_checkout_sessions
+    , (distinct_checkout_sessions / distinct_view_sessions) as overall_conversion_rate
     from agg
 )
 
