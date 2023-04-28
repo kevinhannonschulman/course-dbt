@@ -15,7 +15,7 @@ with final as (
     user_id
     , session_id
     {%- for event in event_types %}
-    , {{event_type_sums(event)}} as {{event}}s
+    , {{event_type_agg(event)}} as {{event}}s
     {%- endfor %}
     , min(created_at_utc) as first_session_event_utc
     , max(created_at_utc) as last_session_event_utc
