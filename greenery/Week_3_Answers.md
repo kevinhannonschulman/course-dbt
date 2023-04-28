@@ -123,7 +123,7 @@ Added!
 
 **Part 4: Install a package (i.e. dbt-utils, dbt-expectations) and apply one or more of the macros to your project**
 
-I installed dbt-utils and dbt-expectations and used multiple macros. Specifically, I used dbt_utils.accepted_range in my intermediate and fact .yml files to validate that certain columns only contained values greater than zero and I used dbt_utils.get_column_values in a Jinja expression in int_session_events_agg to set environment variables. I also used dbt_expectations.expect_column_values_to_be_of_type in my intermediate and fact .yml files to confirm the data type of columns that should contain timestamp_ntz data. Lastly, I created a macro, event_type_sums, to aggregate event types per session when each event_type is passed through the macro.
+I installed dbt-utils and dbt-expectations and used multiple macros. Specifically, I used dbt_utils.accepted_range in my intermediate and fact .yml files to validate that certain columns only contained values greater than zero and I used dbt_utils.get_column_values in a Jinja expression in int_session_events_agg to set environment variables. I also used dbt_expectations.expect_column_values_to_be_of_type in my intermediate and fact .yml files to confirm the data type of columns that should contain timestamp_ntz data and dbt_expectations.expect_column_value_lengths_to_equal to verify that each zip code in stg_postgres_addresses is a valid 5-digit zip.
 
 **Part 5: Show (using dbt docs and the model DAGs) how you have simplified or improved a DAG using macros and/or dbt packages.**
 
