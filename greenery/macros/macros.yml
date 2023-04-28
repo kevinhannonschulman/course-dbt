@@ -9,7 +9,7 @@ macros:
     description: tests if a column contains any values less than zero
     docs:
       show: true
-  - name: event_type_sums
+  - name: event_type_agg
     description: produces sum for each event_type
     docs:
       show: true
