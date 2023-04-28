@@ -23,8 +23,8 @@ models:
         tests:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: timestamp_ntz
-  - name: fct_conversion_rate
-    description: customer conversion rate by product
+  - name: fct_product_conversion_rate
+    description: conversion rate by product
     columns:
       - name: name
         tests:
@@ -40,6 +40,21 @@ models:
           - dbt_utils.accepted_range:
               min_value: 0
       - name: conversion_rate
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+  - name: fct_overall_conversion_rate
+    description: overall conversion rate
+    columns:
+      - name: num_views
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: num_checkouts
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: overall_conversion_rate
         tests:
           - dbt_utils.accepted_range:
               min_value: 0
