@@ -18,6 +18,10 @@ models:
         tests:
           - unique
           - not_null
+      - name: zip_code
+        tests:
+          - dbt_expectations.expect_column_value_lengths_to_equal:
+              value: 5
   - name: stg_postgres_events
     description: website event information
     columns:

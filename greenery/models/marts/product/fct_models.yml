@@ -29,12 +29,12 @@ models:
       - name: name
         tests:
           - not_null
-      - name: total_views
+      - name: distinct_page_view_sessions
         tests:
           - not_null
           - dbt_utils.accepted_range:
               min_value: 0
-      - name: total_orders
+      - name: distinct_order_sessions
         tests:
           - not_null
           - dbt_utils.accepted_range:
@@ -46,11 +46,11 @@ models:
   - name: fct_overall_conversion_rate
     description: overall conversion rate
     columns:
-      - name: num_views
+      - name: distinct_view_sessions
         tests:
           - dbt_utils.accepted_range:
               min_value: 0
-      - name: num_checkouts
+      - name: distinct_checkout_sessions
         tests:
           - dbt_utils.accepted_range:
               min_value: 0
