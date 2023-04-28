@@ -10,12 +10,12 @@ macros:
     docs:
       show: true
   - name: event_type_sums
-    description: retrieves distinct event_types from stg_postgres_events
+    description: produces sum for each event_type
     docs:
       show: true
     arguments:
       - name: event_type
-        description: column containing event types
+        description: column containing event type
   - name: post_hook_grant
     description: grants access to specified role to each model in the database
     docs:
