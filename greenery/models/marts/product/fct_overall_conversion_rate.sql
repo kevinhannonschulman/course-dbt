@@ -7,9 +7,9 @@
 
 with events_distinct_session_type as (
 
-    select session_id
-    , MAX(case when checkouts > 0 then 1 else 0 end) as checkouts
-    , MAX(case when page_views > 0 then 1 else 0 end) as page_views
+    select distinct(session_id)
+    , max(case when checkouts > 0 then 1 else 0 end) as checkouts
+    , max(case when page_views > 0 then 1 else 0 end) as page_views
     from {{ ref('int_session_events_agg') }}
     group by session_id
 )
