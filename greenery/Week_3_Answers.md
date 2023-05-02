@@ -9,11 +9,11 @@
 
 with events_distinct_session_type as (
 
-    select count(distinct(session_id))
-    , sum(case when checkouts > 0 then 1 else 0 end) as checkouts
-    , sum(case when page_views > 0 then 1 else 0 end) as page_views
+    select distinct(session_id)
+    , case when checkouts > 0 then 1 else 0 end as checkouts
+    , case when page_views > 0 then 1 else 0 end as page_views
     from {{ ref('int_session_events_agg') }}
-    group by session_id
+    group by session_id, checkouts, page_views
 )
 
 , agg as (
