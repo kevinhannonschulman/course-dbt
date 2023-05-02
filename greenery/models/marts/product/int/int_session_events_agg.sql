@@ -5,18 +5,11 @@
     )
 }}
 
-{%- set event_types = dbt_utils.get_column_values(
-    table=ref('stg_postgres_events'),
-    column='event_type'
-) -%}
-
 with final as (
     SELECT
     user_id
     , session_id
-    {%- for event in event_types %}
-    , {{event_type_agg(event)}} as {{event}}s
-    {%- endfor %}
+    {{ agg_event_types ('stg_postgres_events', 'event_type') }}
     , min(created_at_utc) as first_session_event_utc
     , max(created_at_utc) as last_session_event_utc
     from {{ ref('stg_postgres_events')}}
