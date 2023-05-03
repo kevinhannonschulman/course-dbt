@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: dim_users
+    description: dimension table of user information
+    columns:
+      - name: user_id
+        tests:
+          - unique
+          - not_null
+      - name: created_at_utc
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp_ntz
+      - name: updated_at_utc
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: timestamp_ntz
+
