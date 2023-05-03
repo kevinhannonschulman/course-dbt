@@ -58,3 +58,33 @@ models:
         tests:
           - dbt_utils.accepted_range:
               min_value: 0
+  - name: dim_products
+    description: dimension information about Greenery products
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: price
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: inventory
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+  - name: fct_product_funnel
+    description: product funnel with three layers (page_view, add_to_cart, checkout)
+    columns:
+      - name: add_to_cart_rate
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: cart_to_checkout_rate
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: overall_conversion_rate
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
