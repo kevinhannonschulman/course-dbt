@@ -9,14 +9,14 @@ with orders as (
 
     select product_id
     , distinct_order_sessions
-    from {{ ref('int_distinct_order_sessions_per_product') }}
+    from {{ ref('int_order_sessions_per_product') }}
 )
 
 , page_views as (
 
     select product_id
     , distinct_page_view_sessions
-    from {{ ref('int_distinct_page_view_sessions_per_product') }}
+    from {{ ref('int_page_view_sessions_per_product') }}
 )
 
 , products as (
