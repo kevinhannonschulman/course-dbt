@@ -51,7 +51,7 @@ The largest drop off points in the funnel are between customers adding a product
 
 *3. Use an exposure on your product analytics model to represent that this is being used in downstream BI tools.*
 
-Added!
+I added the exposure in models/marts/product as _product_exposures.yml.
 
 **Part 3: Reflection questions**
 
