@@ -5,30 +5,16 @@
     )
 }}
 
-with orders as (
-
-    select product_id
-    , distinct_order_sessions
-    from {{ ref('int_order_sessions_per_product') }}
+with unique_sessions_per_product as (
+    select * from {{ ref('int_unique_session_type_per_product') }}
 )
 
-, page_views as (
-
-    select product_id
+, final as (
+    select name
     , distinct_page_view_sessions
-    from {{ ref('int_page_view_sessions_per_product') }}
+    , distinct_checkout_sessions
+    , distinct_checkout_sessions / distinct_page_view_sessions as conversion_rate
+    from unique_sessions_per_product
 )
 
-, products as (
-
-    select product_id, name
-    from {{ ref('stg_postgres_products')}}
-)
-
-select products.name
-    , page_views.distinct_page_view_sessions
-    , orders.distinct_order_sessions
-    , (orders.distinct_order_sessions / page_views.distinct_page_view_sessions) as conversion_rate
-from page_views
-left join orders on page_views.product_id = orders.product_id
-left join products on page_views.product_id = products.product_id
+select * from final

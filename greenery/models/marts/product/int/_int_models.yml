@@ -49,30 +49,6 @@ models:
         tests:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: timestamp_ntz
-  - name: int_order_sessions_per_product
-    description: total distinct order sessions per product_id
-    columns:
-      - name: product_id
-        tests:
-          - unique
-          - not_null
-      - name: distinct_order_sessions
-        tests:
-          - not_null
-          - dbt_utils.accepted_range:
-              min_value: 0
-  - name: int_page_view_sessions_per_product
-    description: total distinct page views sessions per product_id
-    columns:
-      - name: product_id
-        tests:
-          - unique
-          - not_null
-      - name: distinct_page_view_sessions
-        tests:
-          - not_null
-          - dbt_utils.accepted_range:
-              min_value: 0
   - name: int_sessions_with_event_type
     description: intermediate model on session grain for product funnel
     columns:
@@ -80,3 +56,18 @@ models:
         tests:
           - unique
           - not_null
+  - name: int_unique_session_type_per_product
+    description: unique session type (page_view, checkout) per product
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: distinct_page_view_sessions
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: distinct_checkout_sessions
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0

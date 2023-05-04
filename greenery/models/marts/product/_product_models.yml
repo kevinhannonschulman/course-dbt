@@ -34,7 +34,7 @@ models:
           - not_null
           - dbt_utils.accepted_range:
               min_value: 0
-      - name: distinct_order_sessions
+      - name: distinct_checkout_sessions
         tests:
           - not_null
           - dbt_utils.accepted_range:
