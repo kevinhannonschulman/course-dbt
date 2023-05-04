@@ -1,0 +1,14 @@
+version: 2
+
+exposures:  
+- name: Product Funnel Dashboard
+  description: 
+      Necessary models for the product funnel dashboard
+  type: dashboard
+  maturity: high
+  owner:
+    name: Kevin Schulman
+    email: kevin@greenery.com
+  depends_on:
+      - ref('fct_product_funnel')
+      - ref('fct_product_conversion_rate')
