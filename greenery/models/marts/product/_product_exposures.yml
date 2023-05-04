@@ -1,7 +1,8 @@
 version: 2
 
 exposures:  
-- name: Product Funnel Dashboard
+- name: product_funnel_dashboard
+  label: Product Funnel Dashboard
   description: 
       Necessary models for the product funnel dashboard
   type: dashboard
