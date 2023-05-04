@@ -34,12 +34,24 @@ models:
           - not_null
           - dbt_utils.accepted_range:
               min_value: 0
+      - name: distinct_add_to_cart_sessions
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
       - name: distinct_checkout_sessions
         tests:
           - not_null
           - dbt_utils.accepted_range:
               min_value: 0
-      - name: conversion_rate
+      - name: add_to_cart_rate
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: cart_to_checkout_rate
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+      - name: overall_conversion_rate
         tests:
           - dbt_utils.accepted_range:
               min_value: 0

@@ -67,6 +67,10 @@ models:
         tests:
           - dbt_utils.accepted_range:
               min_value: 0
+      - name: distinct_add_to_cart_sessions
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
       - name: distinct_checkout_sessions
         tests:
           - dbt_utils.accepted_range:

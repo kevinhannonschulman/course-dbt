@@ -19,6 +19,14 @@ with events as (
     group by product_id
 )
 
+, carts as (
+    select product_id
+    , count(distinct session_id) as distinct_add_to_cart_sessions
+    from events
+    where event_type = 'add_to_cart'
+    group by product_id
+)
+
 , orders as (
     select order_items.product_id
     , count(distinct events.session_id) as distinct_checkout_sessions
@@ -33,10 +41,12 @@ with events as (
     products.name
     , views.product_id
     , views.distinct_page_view_sessions
+    , carts.distinct_add_to_cart_sessions
     , orders.distinct_checkout_sessions
     from views
     join orders on views.product_id = orders.product_id
     join products on products.product_id = orders.product_id
+    join carts on carts.product_id = orders.product_id
 )
 
 select * from final
