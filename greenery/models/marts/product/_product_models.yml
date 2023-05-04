@@ -46,7 +46,7 @@ models:
   - name: fct_overall_conversion_rate
     description: overall conversion rate
     columns:
-      - name: distinct_view_sessions
+      - name: distinct_page_view_sessions
         tests:
           - dbt_utils.accepted_range:
               min_value: 0
