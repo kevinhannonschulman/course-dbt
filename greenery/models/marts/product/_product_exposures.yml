@@ -1,12 +1,13 @@
 version: 2
 
 exposures:  
-- name: product_funnel_dashboard
-  label: Product Funnel Dashboard
+- name: greenery_product_funnel_dashboard
+  label: Greenery Product Funnel Dashboard
   description: 
       Necessary models for the product funnel dashboard
   type: dashboard
   maturity: high
+  url: https://app.sigmacomputing.com/corise-dbt/workbook/Greenery-Product-Funnel-Dashboard-6naUNR98LHMy5Kwq2PWEBH
   owner:
     name: Kevin Schulman
     email: kevin@greenery.com
