@@ -14,3 +14,4 @@ exposures:
   depends_on:
       - ref('fct_product_funnel')
       - ref('fct_product_conversion_rate')
+      - ref('fct_page_views')
