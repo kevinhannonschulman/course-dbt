@@ -9,12 +9,14 @@ macros:
     description: tests if a column contains any values less than zero
     docs:
       show: true
-  - name: event_type_agg
+  - name: agg_event_types
     description: produces sum for each event_type
     docs:
       show: true
     arguments:
-      - name: event_type
+      - name: table_name
+        description: table containing event type
+      - name: column_name
         description: column containing event type
   - name: post_hook_grant
     description: grants access to specified role to each model in the database
